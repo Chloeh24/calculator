@@ -1,8 +1,13 @@
 var display = document.querySelector('#displayText')
 var buttonArr = document.querySelectorAll('.calc')
-var displayValue = '';
+var equalButton = document.querySelector('#equals')
+var displayValue= ''
+
+
 
 //display calculations
+
+
 for (var i=0; i< buttonArr.length; i++){
     buttonArr[i].addEventListener('click', function(){
         displayValue += this.innerHTML;
@@ -11,8 +16,25 @@ for (var i=0; i< buttonArr.length; i++){
 };
 
 //do calculations
+function add(x, y) {
+    return x + y;
+}
 
+function subtract(x,y) {
+    return x - y;
+}
 
+function divide (x, y) {
+    return x / y;
+}
+
+function times(x,y) {
+    return x * y;
+}
+
+function operate(x, y, operator){
+    
+}
 
 //clear button
 

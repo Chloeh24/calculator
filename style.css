@@ -34,7 +34,8 @@ body {
     margin-top: 10px;
     padding: 15px;
     color: black;
-    font-size: 36px;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 45px;
     text-align: right;
 }
 
@@ -51,25 +52,32 @@ body {
 button {
     background-color: rgb(105, 105, 105);
     border-radius: 12px;
+    font-family: 'Nunito', sans-serif;
     font-style: bold;
     font-size: 30px;
     color: white;
-    outline: hidden;
+    outline: none;
 }
 
+button::-moz-focus-inner {
+    border: 0;
+ }
 
-.notNum {
+.operator {
     background-color: rgb(26, 25, 25);
     
 }
 
 #equals {
     background-color: rgb(236, 104, 28);
-    grid-row: span 2;
+    grid-column: span 2;
 }
 
 #clear, #delete {
     background-color: rgb(206, 18, 18);
-    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
-    font-size: 18px;
+    font-size: 25px;
+}
+
+#clear {
+    grid-column: span 2;
 }

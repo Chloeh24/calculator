@@ -1,13 +1,18 @@
 var display = document.querySelector('#displayText')
 var buttonArr = document.querySelectorAll('.calc')
-var equalButton = document.querySelector('#equals')
-var displayValue= ''
 
+var decimal = document.querySelector('#decimal')
+var clear = document.querySelector('#clear')
+var del = document.querySelector('#delete')
+
+var operator = document.getElementsByClassName('operator')
+var equals = document.querySelector('#equals')
+
+var displayValue= ''
+var decimalon = false;
 
 
 //display calculations
-
-
 for (var i=0; i< buttonArr.length; i++){
     buttonArr[i].addEventListener('click', function(){
         displayValue += this.innerHTML;
@@ -16,29 +21,47 @@ for (var i=0; i< buttonArr.length; i++){
 };
 
 //do calculations
-function add(x, y) {
-    return x + y;
+equals.addEventListener('click', answer())
+
+function answer(x, y, op){
+    if (displayValue !== 0 && !isNaN(displayValue.charAt(displayValue.length-1))){
+       switch(op){
+        case '+':
+            return x + y;
+        case '-':
+            return x - y;
+        case '÷':
+            return x / y;
+        case '×':
+            return x * y;
+        }
+       }
+    }
+
+
+//operators
+for (var i=0; i < operator.length; i++) {
+    operator[i].addEventListener('click', function(){
+        decimalon = false
+    })
 }
 
-function subtract(x,y) {
-    return x - y;
-}
 
-function divide (x, y) {
-    return x / y;
-}
 
-function times(x,y) {
-    return x * y;
-}
+//decimal
 
-function operate(x, y, operator){
-    
-}
+decimal.addEventListener('click', function(){
+    if(!decimalon){
+        if(!isNaN(displayValue.charAt(displayValue.length-1))){
+            displayValue += '.';
+            display.innerHTML = displayValue;
+            decimalon = true
+       }   
+    }
+})
+        
 
 //clear button
-
-var clear = document.querySelector('#clear')
 
 clear.addEventListener('click', function(){
     displayValue = ''
@@ -46,7 +69,6 @@ clear.addEventListener('click', function(){
 })
 
 //delete button 
-var del = document.querySelector('#delete')
 
 del.addEventListener('click', function(){
     displayValue = displayValue.slice(0, displayValue.length-1);

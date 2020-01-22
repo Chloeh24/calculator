@@ -28,6 +28,7 @@ body {
     border-radius: 16px;
     margin-bottom: 30px;
     background-color: rgb(138, 165, 148);
+    overflow: hidden;
 }
 
 #displayText {

@@ -27,7 +27,7 @@ body {
     border: 2px solid rgb(42, 43, 43);
     border-radius: 16px;
     margin-bottom: 30px;
-    font-family: 'Source Code Pro', monospace;
+    font-family: 'Lato', sans-serif;
     background-color: rgb(164, 201, 178);
     text-align: right;
     overflow: hidden;
@@ -50,7 +50,7 @@ body {
 
 .buttonContainer {
     width: 430px;
-    height: 475px;
+    height: 460px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(6, 1fr);

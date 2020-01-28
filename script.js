@@ -38,6 +38,7 @@ for (var i=0; i < operator.length; i++) {
                 x = operate(x, y, op)
                 newOp = this.innerHTML
                 displayTop.innerHTML += y + '' + newOp + '';
+                op = newOp;
             } else {
                 op = this.innerHTML;
                 x = +displayBottom.innerHTML;
@@ -64,13 +65,13 @@ equals.addEventListener('click', function(){
 function operate(x, y, op){
        switch(op){
         case '+':
-            return parseFloat(x + y)
+            return parseFloat((x + y).toPrecision(8));
         case '-':
-            return parseFloat(x - y);
+            return parseFloat((x - y).toPrecision(8));
         case '÷':
-            return parseFloat(x / y);
+            return parseFloat((x / y).toPrecision(8));
         case '×':
-            return parseFloat(x * y);
+            return parseFloat((x * y).toPrecision(8));
         default:
             console.log(displayValue)
        }
@@ -93,6 +94,7 @@ decimal.addEventListener('click', function(){
 clear.addEventListener('click', function(){
     displayTop.innerHTML = ''
     displayBottom.innerHTML = '0';
+    displayValue = ''
     x = null;
     y = null;
 })

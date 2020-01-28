@@ -1,5 +1,6 @@
-var display = document.querySelector('#displayText')
-var buttonArr = document.querySelectorAll('.calc')
+var displayTop = document.querySelector('#displayTop')
+var displayBottom = document.querySelector('#displayBottom')
+var numbers = document.querySelectorAll('.num')
 
 var decimal = document.querySelector('#decimal')
 var clear = document.querySelector('#clear')
@@ -8,45 +9,72 @@ var del = document.querySelector('#delete')
 var operator = document.getElementsByClassName('operator')
 var equals = document.querySelector('#equals')
 
-var displayValue= ''
+var displayValue = '';
 var decimalon = false;
+var x = null
+var y = null 
+var op;
 
+//display 
 
-//display calculations
-for (var i=0; i< buttonArr.length; i++){
-    buttonArr[i].addEventListener('click', function(){
-        displayValue += this.innerHTML;
-        display.innerHTML = displayValue;
+for (var i=0; i< numbers.length; i++){
+    numbers[i].addEventListener('click', function(){
+        if (displayValue === '0') {
+        displayValue = this.innerHTML;
+        displayBottom.innerHTML = displayValue
+        } else {
+        displayValue+= this.innerHTML;
+        displayBottom.innerHTML = displayValue
+        }
+      
     })
 };
 
-//do calculations
-equals.addEventListener('click', answer())
-
-function answer(x, y, op){
-    if (displayValue !== 0 && !isNaN(displayValue.charAt(displayValue.length-1))){
-       switch(op){
-        case '+':
-            return x + y;
-        case '-':
-            return x - y;
-        case '÷':
-            return x / y;
-        case '×':
-            return x * y;
-        }
-       }
-    }
-
-
-//operators
 for (var i=0; i < operator.length; i++) {
     operator[i].addEventListener('click', function(){
-        decimalon = false
-    })
-}
+        if(!isNaN(displayValue.charAt(displayValue.length-1))){
+            if(x) {
+                y = +displayBottom.innerHTML;
+                x = operate(x, y, op)
+                newOp = this.innerHTML
+                displayTop.innerHTML += y + '' + newOp + '';
+            } else {
+                op = this.innerHTML;
+                x = +displayBottom.innerHTML;
+                displayTop.innerHTML += x + '' + op + ''
+            }
+            displayValue = '0'
+        }
+            decimalon = false
+        })
+    }
 
+//do calculations
+equals.addEventListener('click', function(){
+    if(!isNaN(displayValue.charAt(displayValue.length-1))){
+        y = +displayBottom.innerHTML;
+        displayBottom.innerHTML = operate(x, y, op);
+        displayTop.innerHTML = ''
+        displayValue = ''
+        x = null;
+        y = null;
+    }
+})
 
+function operate(x, y, op){
+       switch(op){
+        case '+':
+            return parseFloat(x + y)
+        case '-':
+            return parseFloat(x - y);
+        case '÷':
+            return parseFloat(x / y);
+        case '×':
+            return parseFloat(x * y);
+        default:
+            console.log(displayValue)
+       }
+    }
 
 //decimal
 
@@ -54,23 +82,24 @@ decimal.addEventListener('click', function(){
     if(!decimalon){
         if(!isNaN(displayValue.charAt(displayValue.length-1))){
             displayValue += '.';
-            display.innerHTML = displayValue;
+            displayBottom.innerHTML = displayValue;
             decimalon = true
        }   
     }
 })
-        
 
 //clear button
 
 clear.addEventListener('click', function(){
-    displayValue = ''
-    display.innerHTML = displayValue;
+    displayTop.innerHTML = ''
+    displayBottom.innerHTML = '0';
+    x = null;
+    y = null;
 })
 
 //delete button 
 
 del.addEventListener('click', function(){
     displayValue = displayValue.slice(0, displayValue.length-1);
-    display.innerHTML = displayValue;
+    displayBottom.innerHTML = displayValue;
 });

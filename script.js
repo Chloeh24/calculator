@@ -12,6 +12,8 @@ var equals = document.querySelector('#equals')
 var displayValue = '';
 var lastChar = displayValue.charAt(displayValue.length-1)
 var decimalon = false;
+var operatorOn = false;
+
 var x = null
 var y = null 
 var op;
@@ -20,7 +22,7 @@ var op;
 
 for (var i=0; i< numbers.length; i++){
     numbers[i].addEventListener('click', function(){
-        if (displayValue === '0') {
+        if (displayValue === '0' || displayValue === '') {
         displayValue = this.innerHTML;
         displayBottom.innerHTML = displayValue
         } else {
@@ -32,8 +34,7 @@ for (var i=0; i< numbers.length; i++){
 };
 
 for (var i=0; i < operator.length; i++) {
-    operator[i].addEventListener('click', updateDisplay)
-
+    operator[i].addEventListener('click', updateDisplay);
 }
 
 function updateDisplay(){
@@ -50,9 +51,12 @@ function updateDisplay(){
                 displayTop.innerHTML += x + '' + op + ''
             }
             displayValue = ''
-        }
+        } 
             decimalon = false
+    
         }
+            
+
 
 
 //do calculations
@@ -84,6 +88,7 @@ function operate(x, y, op){
     }
 
     equals.addEventListener('click', equal)
+    
 //decimal
 
 function dec(){
@@ -149,11 +154,18 @@ document.addEventListener('keydown', function(e) {
             case '.':
                 dec()
                 break;
-            case '+':
             case '-':
-                updateDisplay(e.innerHTML)
-            break;
-
-        }
+                document.getElementById('minus').click()
+                break;
+            case '+':
+                document.getElementById('add').click()
+                break;
+            case '*':
+                document.getElementById('times').click()
+                break;
+            case '/':
+                document.getElementById('divide').click()
+                break;
+                  }
     }
 })

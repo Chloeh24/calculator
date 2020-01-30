@@ -9,7 +9,7 @@ var del = document.querySelector('#delete')
 var operator = document.getElementsByClassName('operator')
 var equals = document.querySelector('#equals')
 
-var displayValue = '';
+var displayValue = '0';
 var decimalon = false;
 var x = null
 var y = null 
@@ -85,7 +85,11 @@ decimal.addEventListener('click', function(){
             displayValue += '.';
             displayBottom.innerHTML = displayValue;
             decimalon = true
-       }   
+       }   else {
+           displayValue += '0.';
+           displayBottom.innerHTML = displayValue;
+           decimalon = true
+       }
     }
 })
 

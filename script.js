@@ -12,7 +12,6 @@ var equals = document.querySelector('#equals')
 var displayValue = '';
 var lastChar = displayValue.charAt(displayValue.length-1)
 var decimalon = false;
-var operatorOn = false;
 
 var x = null
 var y = null 
@@ -54,8 +53,7 @@ function updateDisplay(){
         } 
             decimalon = false
     
-        }
-            
+        }    
 
 
 
@@ -69,6 +67,7 @@ function equal(){
         displayValue = ''
         x = null;
         y = null;
+        decimalon = false;
     }
 }
 
@@ -93,15 +92,15 @@ function operate(x, y, op){
 
 function dec(){
     if(!decimalon){
-        if(!isNaN(lastChar)){
-            displayValue += '.';
-            displayBottom.innerHTML = displayValue;
-            decimalon = true
-       } else {
-           displayValue += '0.';
-           displayBottom.innerHTML = displayValue;
+     if (displayValue === '' || displayValue === '0'){
+            displayValue += '0.';
+             displayBottom.innerHTML = displayValue
            decimalon = true
-       }
+       } else if (!isNaN(lastChar)){
+        displayValue += '.';
+        displayBottom.innerHTML = displayValue
+        decimalon = true
+         }
     }
 }
 
@@ -115,6 +114,7 @@ function clearAll(){
     displayValue = ''
     x = null;
     y = null;
+    decimalon = false
 }
 
 

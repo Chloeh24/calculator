@@ -92,11 +92,11 @@ function operate(x, y, op){
 
 function dec(){
     if(!decimalon){
-     if (displayValue === '' || displayValue === '0'){
+     if (displayValue === ''){
             displayValue += '0.';
              displayBottom.innerHTML = displayValue
            decimalon = true
-       } else if (!isNaN(lastChar)){
+       } else if (!isNaN(lastChar) || displayValue === '0'){
         displayValue += '.';
         displayBottom.innerHTML = displayValue
         decimalon = true
